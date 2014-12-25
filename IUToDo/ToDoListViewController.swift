@@ -38,7 +38,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
             cellText += " - DONE! - " + NSDateFormatter.localizedStringFromDate(todo.doneDate!, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.MediumStyle)
         }
         
-        cell.textLabel.text = cellText
+        cell.textLabel?.text = cellText
         
         return cell
     }
@@ -77,11 +77,10 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
-    func saveToDo(todo:ToDo) {
-        if let index = toDoList.indexPathForSelectedRow()?.item {
-            todos.removeAtIndex(index)
+    func saveToDo(todo:ToDo, newToDo:Bool) {
+        if newToDo {
+            todos.append(todo)
         }
-        todos.append(todo)
         toDoList.reloadData()
     }
     

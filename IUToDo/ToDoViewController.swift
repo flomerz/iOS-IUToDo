@@ -10,12 +10,13 @@ import UIKit
 
 protocol ToDoViewControllerDelegate
 {
-    func saveToDo(todo:ToDo)
+    func saveToDo(todo:ToDo, newToDo:Bool)
 }
 
 class ToDoViewController: UIViewController {
     var delegate:ToDoViewControllerDelegate?
     var todo:ToDo?
+    var newToDo:Bool = false
     
     @IBOutlet weak var fieldTitle: UITextField!
     @IBOutlet weak var fieldSubject: UITextField!
@@ -24,6 +25,7 @@ class ToDoViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if (todo == nil) {
+            newToDo = true
             todo = ToDo(title: "", subject: "")
         }
         fieldTitle.text = todo?.title
@@ -39,7 +41,7 @@ class ToDoViewController: UIViewController {
         todo!.title = fieldTitle.text
         todo!.subject = fieldSubject.text
         
-        delegate?.saveToDo(todo!)
+        delegate?.saveToDo(todo!, newToDo: newToDo)
         navigationController?.popToRootViewControllerAnimated(true)
     }
     
