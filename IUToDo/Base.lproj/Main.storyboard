@@ -8,8 +8,7 @@
         <!--ToDo's-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="IUToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ToDoListViewController" customModule="IUToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -18,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Z2r-FK-085">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Z2r-FK-085">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -31,35 +30,91 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="nbq-cC-h3p"/>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="Zce-2d-iIW"/>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="yZY-iD-Ozs"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="tpW-Ol-RE6"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Z2r-FK-085" secondAttribute="trailing" id="nGF-Eu-sga"/>
-                            <constraint firstItem="Z2r-FK-085" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="tHW-is-ueG"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Z2r-FK-085" secondAttribute="bottom" id="0Wd-CR-UdW"/>
+                            <constraint firstItem="Z2r-FK-085" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="HTs-CY-FP5"/>
+                            <constraint firstItem="Z2r-FK-085" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="SVv-py-Tdh"/>
+                            <constraint firstAttribute="trailing" secondItem="Z2r-FK-085" secondAttribute="trailing" id="W1P-fo-Le8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="ToDo's" id="I98-K8-siL">
                         <barButtonItem key="rightBarButtonItem" title="Add ToDo" id="Mkh-6a-U51">
                             <connections>
-                                <action selector="addToDo:" destination="vXZ-lx-hvc" id="400-rP-VGl"/>
+                                <segue destination="gMZ-vY-sr7" kind="show" identifier="addToDo" id="jOJ-Md-cLG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="toDoList" destination="Z2r-FK-085" id="AVu-5A-QFh"/>
+                        <outlet property="toDoList" destination="Z2r-FK-085" id="c64-rt-3gd"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137" y="179"/>
+        </scene>
+        <!--ToDo-->
+        <scene sceneID="SQ9-ar-GD1">
+            <objects>
+                <viewController storyboardIdentifier="ToDoViewController" id="gMZ-vY-sr7" customClass="ToDoViewController" customModule="IUToDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wue-Qy-nAT"/>
+                        <viewControllerLayoutGuide type="bottom" id="MbH-b7-2Sr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Ow-L7-rie">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZGA-cv-zGe">
+                                <rect key="frame" x="16" y="104" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eOz-vi-NtD">
+                                <rect key="frame" x="16" y="154" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ee-CI-osd">
+                                <rect key="frame" x="283" y="224" width="34" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveToDo:" destination="gMZ-vY-sr7" eventType="touchUpInside" id="5LE-cB-XXK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="eOz-vi-NtD" secondAttribute="trailing" id="BCR-oO-IVU"/>
+                            <constraint firstItem="ZGA-cv-zGe" firstAttribute="top" secondItem="wue-Qy-nAT" secondAttribute="bottom" constant="40" id="BVX-0p-Kaa"/>
+                            <constraint firstItem="0ee-CI-osd" firstAttribute="top" secondItem="eOz-vi-NtD" secondAttribute="bottom" constant="40" id="C5h-h5-xYV"/>
+                            <constraint firstItem="eOz-vi-NtD" firstAttribute="top" secondItem="ZGA-cv-zGe" secondAttribute="bottom" constant="20" id="LaQ-we-phE"/>
+                            <constraint firstItem="ZGA-cv-zGe" firstAttribute="leading" secondItem="7Ow-L7-rie" secondAttribute="leadingMargin" id="at1-Uq-kn6"/>
+                            <constraint firstItem="eOz-vi-NtD" firstAttribute="leading" secondItem="7Ow-L7-rie" secondAttribute="leadingMargin" id="fal-0b-oC5"/>
+                            <constraint firstAttribute="centerX" secondItem="0ee-CI-osd" secondAttribute="centerX" id="m2t-sr-foT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZGA-cv-zGe" secondAttribute="trailing" id="xMa-hv-3hx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="ToDo" id="rWe-UZ-Nhl"/>
+                    <connections>
+                        <outlet property="fieldSubject" destination="eOz-vi-NtD" id="07f-hX-bCs"/>
+                        <outlet property="fieldTitle" destination="ZGA-cv-zGe" id="im0-H4-ofP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fnd-ne-UiJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1009" y="179"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eIQ-rS-Xzu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="po7-Ra-8o2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9zb-89-Avl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yxm-cc-fX4">
@@ -71,6 +126,7 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="xBO-fF-xH3"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="po7-Ra-8o2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-675" y="179"/>
         </scene>

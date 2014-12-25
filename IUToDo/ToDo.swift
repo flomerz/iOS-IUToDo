@@ -13,7 +13,7 @@ class ToDo {
     var subject: String
     var doneDate: NSDate?
     
-    init (title: String, subject: String) {
+    init(title: String, subject: String) {
         self.title = title
         self.subject = subject
     }
