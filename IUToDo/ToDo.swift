@@ -7,18 +7,13 @@
 //
 
 import Foundation
+import CoreData
 
-class ToDo {
-    var title: String
-    var subject: String
-    var doneDate: NSDate?
+@objc(ToDo)
+class ToDo : NSManagedObject {
+    class var ENTITY_NAME: String { return "ToDo" }
     
-    init(title: String, subject: String) {
-        self.title = title
-        self.subject = subject
-    }
-    
-    func done() {
-        doneDate = NSDate()
-    }
+    @NSManaged var title: String
+    @NSManaged var subject: String
+    @NSManaged var doneDate: NSDate
 }

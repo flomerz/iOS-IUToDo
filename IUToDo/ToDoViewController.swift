@@ -7,27 +7,33 @@
 //
 
 import UIKit
+import CoreData
 
-protocol ToDoViewControllerDelegate
-{
-    func saveToDo(todo:ToDo, newToDo:Bool)
+protocol ToDoViewControllerDelegate {
+    func onTodosUpdated()
 }
 
 class ToDoViewController: UIViewController {
     var delegate:ToDoViewControllerDelegate?
-    var todo:ToDo?
-    var newToDo:Bool = false
-    
     @IBOutlet weak var fieldTitle: UITextField!
     @IBOutlet weak var fieldSubject: UITextField!
+    
+    var todo:ToDo?
+    
+    lazy var managedObjectContext : NSManagedObjectContext? = {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        if let managedObjectContext = appDelegate.managedObjectContext {
+            return managedObjectContext
+        }
+        else {
+            return nil
+        }
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        if (todo == nil) {
-            newToDo = true
-            todo = ToDo(title: "", subject: "")
-        }
+        
         fieldTitle.text = todo?.title
         fieldSubject.text = todo?.subject
     }
@@ -38,10 +44,16 @@ class ToDoViewController: UIViewController {
     }
     
     @IBAction func saveToDo(sender: AnyObject) {
+        if todo == nil {
+            todo = (NSEntityDescription.insertNewObjectForEntityForName(ToDo.ENTITY_NAME, inManagedObjectContext: managedObjectContext!) as ToDo)
+        }
+        
         todo!.title = fieldTitle.text
         todo!.subject = fieldSubject.text
-        
-        delegate?.saveToDo(todo!, newToDo: newToDo)
+                
+        managedObjectContext!.save(nil)
+
+        delegate?.onTodosUpdated()
         navigationController?.popToRootViewControllerAnimated(true)
     }
     

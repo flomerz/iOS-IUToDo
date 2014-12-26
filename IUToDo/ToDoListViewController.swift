@@ -7,21 +7,40 @@
 //
 
 import UIKit
+import CoreData
 
 class ToDoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, ToDoViewControllerDelegate {
     @IBOutlet weak var toDoList: UITableView!
     
     var todos: [ToDo] = [ToDo]()
     
+    lazy var managedObjectContext : NSManagedObjectContext? = {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        if let managedObjectContext = appDelegate.managedObjectContext {
+            return managedObjectContext
+        }
+        else {
+            return nil
+        }
+    }()
+    
    override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         toDoList.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        loadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func loadData() {
+        var fetchRequest = NSFetchRequest(entityName: ToDo.ENTITY_NAME)
+        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [ToDo] {
+            todos = fetchResults
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,8 +53,8 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         var todo = self.todos[indexPath.row]
         var cellText = todo.title
         
-        if todo.doneDate != nil {
-            cellText += " - DONE! - " + NSDateFormatter.localizedStringFromDate(todo.doneDate!, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.MediumStyle)
+        if let doneDate = todo.doneDate as NSDate? {
+            cellText += " - DONE! - " + NSDateFormatter.localizedStringFromDate(doneDate, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.MediumStyle)
         }
         
         cell.textLabel?.text = cellText
@@ -45,12 +64,12 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let todo = self.todos[indexPath.item]
-        if let doneDate = todo.doneDate {
-            let date = NSDateFormatter.localizedStringFromDate(todo.doneDate!, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.MediumStyle)
-            let alert = UIAlertView(title: "ToDO", message: todo.title+": "+todo.subject+"\n"+date, delegate: self, cancelButtonTitle: "Cancel")
+        if let doneDate = todo.doneDate as NSDate? {
+            let date = NSDateFormatter.localizedStringFromDate(doneDate, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.MediumStyle)
+            let alert = UIAlertView(title: "ToDo", message: todo.title+": "+todo.subject+"\n"+date, delegate: self, cancelButtonTitle: "Cancel")
             alert.show()
         } else {
-            let alert = UIAlertView(title: "ToDO", message: todo.title+": "+todo.subject, delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Done", "Edit")
+            let alert = UIAlertView(title: "ToDo", message: todo.title+": "+todo.subject, delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Done", "Edit")
             alert.show()
         }
     }
@@ -60,10 +79,10 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
             let todo = self.todos[index]
             switch buttonIndex {
                 case 0: // cancel
-                    toDoList.reloadData()
                     break
                 case 1: // done
-                    todo.done()
+                    todo.doneDate = NSDate()
+                    managedObjectContext!.save(nil)
                     toDoList.reloadData()
                     break
                 case 2: // edit
@@ -77,18 +96,16 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
-    func saveToDo(todo:ToDo, newToDo:Bool) {
-        if newToDo {
-            todos.append(todo)
-        }
-        toDoList.reloadData()
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "addToDo") {
             let controller:ToDoViewController = segue.destinationViewController as ToDoViewController;
             controller.delegate = self
         }
+    }
+    
+    func onTodosUpdated() {
+        loadData()
+        toDoList.reloadData()
     }
     
 }
