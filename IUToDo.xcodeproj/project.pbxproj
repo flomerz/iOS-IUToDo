@@ -13,6 +13,7 @@
 		5C0B2EEE1A48419A005B7590 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0B2EEC1A48419A005B7590 /* LaunchScreen.xib */; };
 		5C0B2EFA1A48419A005B7590 /* IUToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B2EF91A48419A005B7590 /* IUToDoTests.swift */; };
 		5C0B2F041A4841DE005B7590 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B2F031A4841DE005B7590 /* ToDo.swift */; };
+		5C500F741A4F611A00556ED9 /* AlamofireSwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C500F6E1A4F610800556ED9 /* AlamofireSwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5C9BA05B1A4C555300F58859 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9C79DB1A4C478100972142 /* CoreData.framework */; };
 		5C9C79D91A4B561800972142 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9C79D71A4B561800972142 /* ToDoListViewController.swift */; };
 		5C9C79DA1A4B561800972142 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9C79D81A4B561800972142 /* ToDoViewController.swift */; };
@@ -27,7 +28,41 @@
 			remoteGlobalIDString = 5C0B2EDD1A48419A005B7590;
 			remoteInfo = IUToDo;
 		};
+		5C500F6D1A4F610800556ED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C500F661A4F610700556ED9 /* Alamofire-SwiftyJSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A8AFB70F19D1401D0070765E;
+			remoteInfo = AlamofireSwiftyJSON;
+		};
+		5C500F6F1A4F610800556ED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C500F661A4F610700556ED9 /* Alamofire-SwiftyJSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A8AFB71A19D1401D0070765E;
+			remoteInfo = AlamofireSwiftyJSONTests;
+		};
+		5C500F711A4F610E00556ED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C500F661A4F610700556ED9 /* Alamofire-SwiftyJSON.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A8AFB70E19D1401D0070765E;
+			remoteInfo = AlamofireSwiftyJSON;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5C500F731A4F611200556ED9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5C500F741A4F611A00556ED9 /* AlamofireSwiftyJSON.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5C0B2EDE1A48419A005B7590 /* IUToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IUToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +75,7 @@
 		5C0B2EF81A48419A005B7590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C0B2EF91A48419A005B7590 /* IUToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUToDoTests.swift; sourceTree = "<group>"; };
 		5C0B2F031A4841DE005B7590 /* ToDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
+		5C500F661A4F610700556ED9 /* Alamofire-SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Alamofire-SwiftyJSON.xcodeproj"; path = "Alamofire-SwiftyJSON/Alamofire-SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
 		5C9C79D71A4B561800972142 /* ToDoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
 		5C9C79D81A4B561800972142 /* ToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		5C9C79DB1A4C478100972142 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -68,6 +104,7 @@
 		5C0B2ED51A48419A005B7590 = {
 			isa = PBXGroup;
 			children = (
+				5C500F661A4F610700556ED9 /* Alamofire-SwiftyJSON.xcodeproj */,
 				5C9C79DB1A4C478100972142 /* CoreData.framework */,
 				5C0B2EE01A48419A005B7590 /* IUToDo */,
 				5C0B2EF61A48419A005B7590 /* IUToDoTests */,
@@ -125,6 +162,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5C500F671A4F610700556ED9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5C500F6E1A4F610800556ED9 /* AlamofireSwiftyJSON.framework */,
+				5C500F701A4F610800556ED9 /* AlamofireSwiftyJSONTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5C7C52481A4844A000AF2B03 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,10 +189,12 @@
 				5C0B2EDA1A48419A005B7590 /* Sources */,
 				5C0B2EDB1A48419A005B7590 /* Frameworks */,
 				5C0B2EDC1A48419A005B7590 /* Resources */,
+				5C500F731A4F611200556ED9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5C500F721A4F610E00556ED9 /* PBXTargetDependency */,
 			);
 			name = IUToDo;
 			productName = IUToDo;
@@ -200,6 +248,12 @@
 			mainGroup = 5C0B2ED51A48419A005B7590;
 			productRefGroup = 5C0B2EDF1A48419A005B7590 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5C500F671A4F610700556ED9 /* Products */;
+					ProjectRef = 5C500F661A4F610700556ED9 /* Alamofire-SwiftyJSON.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5C0B2EDD1A48419A005B7590 /* IUToDo */,
@@ -207,6 +261,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5C500F6E1A4F610800556ED9 /* AlamofireSwiftyJSON.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AlamofireSwiftyJSON.framework;
+			remoteRef = 5C500F6D1A4F610800556ED9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5C500F701A4F610800556ED9 /* AlamofireSwiftyJSONTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AlamofireSwiftyJSONTests.xctest;
+			remoteRef = 5C500F6F1A4F610800556ED9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5C0B2EDC1A48419A005B7590 /* Resources */ = {
@@ -256,6 +327,11 @@
 			isa = PBXTargetDependency;
 			target = 5C0B2EDD1A48419A005B7590 /* IUToDo */;
 			targetProxy = 5C0B2EF41A48419A005B7590 /* PBXContainerItemProxy */;
+		};
+		5C500F721A4F610E00556ED9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AlamofireSwiftyJSON;
+			targetProxy = 5C500F711A4F610E00556ED9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

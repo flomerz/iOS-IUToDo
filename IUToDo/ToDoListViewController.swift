@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import Alamofire
+import SwiftyJSON
 
 class ToDoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, ToDoViewControllerDelegate {
     @IBOutlet weak var toDoList: UITableView!
@@ -37,6 +39,25 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadData() {
+        Alamofire.request(.GET, "http://192.168.0.138:9000/")
+            .responseJSON { (req, res, json, error) in
+                if(error != nil) {
+                    NSLog("Error: \(error)")
+                    println(req)
+                    println(res)
+                }
+                else {
+                    NSLog("Success")
+                    var json = JSON(json!)
+                    println(json)
+                    for (key: String, subJson: JSON) in json {
+                        println(key)
+                        println(subJson["title"])
+                        println(subJson["subject"])
+                    }
+                }
+        }
+        
         var fetchRequest = NSFetchRequest(entityName: ToDo.ENTITY_NAME)
         if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [ToDo] {
             todos = fetchResults
