@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import SwiftyJSON
 
 @objc(ToDo)
 class ToDo : NSManagedObject {
@@ -16,4 +17,9 @@ class ToDo : NSManagedObject {
     @NSManaged var title: String
     @NSManaged var subject: String
     @NSManaged var doneDate: NSDate
+
+    func update(json: JSON) {
+        self.title = json["title"].string!
+        self.subject = json["subject"].string!
+    }
 }

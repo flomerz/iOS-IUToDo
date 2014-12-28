@@ -14,6 +14,7 @@
 		5C0B2EFA1A48419A005B7590 /* IUToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B2EF91A48419A005B7590 /* IUToDoTests.swift */; };
 		5C0B2F041A4841DE005B7590 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B2F031A4841DE005B7590 /* ToDo.swift */; };
 		5C500F741A4F611A00556ED9 /* AlamofireSwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C500F6E1A4F610800556ED9 /* AlamofireSwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5C500F761A5035DE00556ED9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C500F751A5035DE00556ED9 /* DataManager.swift */; };
 		5C9BA05B1A4C555300F58859 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9C79DB1A4C478100972142 /* CoreData.framework */; };
 		5C9C79D91A4B561800972142 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9C79D71A4B561800972142 /* ToDoListViewController.swift */; };
 		5C9C79DA1A4B561800972142 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9C79D81A4B561800972142 /* ToDoViewController.swift */; };
@@ -76,6 +77,7 @@
 		5C0B2EF91A48419A005B7590 /* IUToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUToDoTests.swift; sourceTree = "<group>"; };
 		5C0B2F031A4841DE005B7590 /* ToDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		5C500F661A4F610700556ED9 /* Alamofire-SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Alamofire-SwiftyJSON.xcodeproj"; path = "Alamofire-SwiftyJSON/Alamofire-SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
+		5C500F751A5035DE00556ED9 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		5C9C79D71A4B561800972142 /* ToDoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
 		5C9C79D81A4B561800972142 /* ToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		5C9C79DB1A4C478100972142 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				5C0B2EE31A48419A005B7590 /* AppDelegate.swift */,
+				5C500F751A5035DE00556ED9 /* DataManager.swift */,
 				5C7C52481A4844A000AF2B03 /* Model */,
 				5C9C79D71A4B561800972142 /* ToDoListViewController.swift */,
 				5C9C79D81A4B561800972142 /* ToDoViewController.swift */,
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C9C79DA1A4B561800972142 /* ToDoViewController.swift in Sources */,
+				5C500F761A5035DE00556ED9 /* DataManager.swift in Sources */,
 				5C9C79D91A4B561800972142 /* ToDoListViewController.swift in Sources */,
 				5C0B2F041A4841DE005B7590 /* ToDo.swift in Sources */,
 				5C0B2EE41A48419A005B7590 /* AppDelegate.swift in Sources */,
