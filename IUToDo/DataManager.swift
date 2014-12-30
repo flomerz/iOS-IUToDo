@@ -14,6 +14,8 @@ import AlamofireSwiftyJSON
 
 class DataManager {
     
+    class var SERVER: String { return "http://192.168.0.138:9000/" }
+    
     // Local
     
     class func loadToDos(context: NSManagedObjectContext) -> [ToDo]? {
@@ -50,7 +52,7 @@ class DataManager {
     }
     
     class func syncToDoFromLocalToRemote(todo:ToDo, context: NSManagedObjectContext, callback: () -> Void) {
-       Alamofire.request(.POST, "http://192.168.0.138:9000/",
+       Alamofire.request(.POST, SERVER,
             parameters: ["id": todo.externalID, "title": todo.title, "subject": todo.subject, "doneDate": todo.doneDateString()]
             ).responseSwiftyJSON { (request, response, json, error) in
                 todo.update(json)
@@ -78,7 +80,7 @@ class DataManager {
     }
     
     class func syncToDosFromRemoteToLocal(context: NSManagedObjectContext, callback: () -> Void) {
-        Alamofire.request(.GET, "http://192.168.0.138:9000/").responseSwiftyJSON { (request, response, json, error) in
+        Alamofire.request(.GET, SERVER).responseSwiftyJSON { (request, response, json, error) in
             for (key: String, todoJson: JSON) in json {
                 var todo:ToDo?
                 
