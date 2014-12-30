@@ -3,6 +3,9 @@ iOS-IUToDo
 
 very simple iOS ToDo App
 
+Run NodeJS Server:
+- npm install
+- node server.js
 
 [v1.0 Dialogs & Memory](../../tree/v1.0)
 ----
