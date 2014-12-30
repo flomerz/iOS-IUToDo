@@ -26,11 +26,15 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }()
     
-   override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         toDoList.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        loadData()
+
+        DataManager.syncToDos(managedObjectContext!, callback: { () -> Void in
+            NSLog("2-way synced todos with remote")
+            self.loadData()
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,28 +43,9 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadData() {
-        Alamofire.request(.GET, "http://192.168.0.138:9000/")
-            .responseJSON { (req, res, json, error) in
-                if(error != nil) {
-                    NSLog("Error: \(error)")
-                    println(req)
-                    println(res)
-                }
-                else {
-                    NSLog("Success")
-                    var json = JSON(json!)
-                    println(json)
-                    for (key: String, subJson: JSON) in json {
-                        println(key)
-                        println(subJson["title"])
-                        println(subJson["subject"])
-                    }
-                }
-        }
-        
-        var fetchRequest = NSFetchRequest(entityName: ToDo.ENTITY_NAME)
-        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [ToDo] {
-            todos = fetchResults
+        if let results = DataManager.loadToDos(managedObjectContext!)? {
+            self.todos = results
+            toDoList.reloadData()
         }
     }
     
@@ -79,7 +64,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         cell.textLabel?.text = cellText
-        
+
         return cell
     }
     
@@ -102,9 +87,10 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
                 case 0: // cancel
                     break
                 case 1: // done
-                    todo.doneDate = NSDate()
-                    managedObjectContext!.save(nil)
-                    toDoList.reloadData()
+                    DataManager.doneToDo(todo, context: managedObjectContext!, callback: { () -> Void in
+                        NSLog("synced with remote - set done to todo")
+                        self.toDoList.reloadData()
+                    })
                     break
                 case 2: // edit
                     var ctrl = storyboard?.instantiateViewControllerWithIdentifier("ToDoViewController") as ToDoViewController
@@ -124,9 +110,15 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func onTodosUpdated() {
+    func onTodoUpdated() {
         loadData()
-        toDoList.reloadData()
+    }
+    
+    func onTodoUpdatedRemote() {
+        NSLog("added todo to remote")
+        DataManager.syncToDosFromRemoteToLocal(managedObjectContext!, callback: { () -> Void in
+            NSLog("synced remote todos to local")
+        })
     }
     
 }

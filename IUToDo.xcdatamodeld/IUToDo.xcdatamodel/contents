@@ -2,10 +2,11 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ToDo" representedClassName="ToDo" syncable="YES">
         <attribute name="doneDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="externalID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ToDo" positionX="-54" positionY="-9" width="128" height="90"/>
+        <element name="ToDo" positionX="-54" positionY="-9" width="128" height="105"/>
     </elements>
 </model>

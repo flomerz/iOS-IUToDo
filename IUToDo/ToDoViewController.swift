@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 
 protocol ToDoViewControllerDelegate {
-    func onTodosUpdated()
+    func onTodoUpdated()
+    func onTodoUpdatedRemote()
 }
 
 class ToDoViewController: UIViewController {
@@ -43,18 +44,26 @@ class ToDoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func saveLocalDone() {
+        self.delegate?.onTodoUpdated()
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    func saveRemoteDone() {
+        self.delegate?.onTodoUpdatedRemote()
+    }
+    
     @IBAction func saveToDo(sender: AnyObject) {
-        if todo == nil {
-            todo = (NSEntityDescription.insertNewObjectForEntityForName(ToDo.ENTITY_NAME, inManagedObjectContext: managedObjectContext!) as ToDo)
+        var id:NSNumber? = nil
+        if let todo = todo? {
+            todo.title = fieldTitle.text
+            todo.subject = fieldSubject.text
+            DataManager.updateToDo(todo, context: managedObjectContext!, callback: saveRemoteDone)
+            saveLocalDone()
+        } else {
+            DataManager.addToDo(fieldTitle.text, subject: fieldSubject.text, context: managedObjectContext!, saveRemoteDone)
+            saveLocalDone()
         }
-        
-        todo!.title = fieldTitle.text
-        todo!.subject = fieldSubject.text
-                
-        managedObjectContext!.save(nil)
-
-        delegate?.onTodosUpdated()
-        navigationController?.popToRootViewControllerAnimated(true)
     }
     
 }
